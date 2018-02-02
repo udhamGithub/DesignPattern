@@ -1,0 +1,75 @@
+
+#include<iostream>
+using namespace std;
+
+enum TYPE
+{
+    SQUARE,
+    CIRCLE,
+    RECTANGLE,
+    SCROLLER
+};
+
+class Shape
+{
+    int lenth;;
+public:
+    virtual void draw()= 0;
+};
+
+void Shape::draw()
+{
+    cout<<"Base class constructor called";
+}
+
+class square: public Shape
+{
+public:
+    virtual void draw()
+    {
+        cout<<"Square"<<endl;
+    }
+
+};
+class Circle: public Shape
+{
+public:
+    virtual void draw()
+    {
+        cout<<"circle"<<endl;
+    }
+};
+
+class Rectangle: public Shape
+{
+public:
+    virtual void draw()
+    {
+        cout<<"circle"<<endl;
+    }
+};
+
+void InitFactory( TYPE type)
+{
+
+
+}
+
+//---------------------------------------
+
+class clientDrawing
+{
+    Shape *ptr;
+public:
+    void drawImage()
+    {
+        cout<<"client class";
+    }
+};
+
+//------------------------------------
+int main(int argc,char ** argv)
+{
+    cout<<"protype Method"<<endl;
+    return  0;
+}
