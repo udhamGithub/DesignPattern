@@ -1,0 +1,110 @@
+/*
+ * PrototypeBullet.cpp
+ *
+ *  Created on: 02-Feb-2018
+ *      Author: ee205237
+ */
+
+#include<iostream>
+//#include<unordered_map>
+#include<string>
+#include<memory>
+//#include<auto_ptr>
+using namespace std;
+
+//Bullet is Bas  Abstract class,who want bullet he need to derive
+//this absarct class and need to be implement
+class bullet
+{
+protected:
+	string _bulletName;
+	float 	_speed;
+	float _firePower;
+	float _damagePower;
+	float _direction;
+public:
+	bullet(){}
+	bullet(string bulletName,float speed,float firePower,float damagePower,float  direction)
+	{
+		_bulletName=bulletName;
+	    _speed= speed;
+	    _firePower = firePower;
+	    _damagePower=damagePower;
+	    _direction=direction;
+	}
+	virtual ~ bullet(){}
+	virtual auto_ptr<bullet> clone()=0;
+
+	void fire(float direction)
+	{
+		_direction = direction;
+		cout<<"Name			:"<< _bulletName<<endl
+			<<"speed		:"<< _speed<<endl
+			<<"firePower	:"<<_firePower<<endl
+			<<"damagePower	:"<< _bulletName<<endl
+			<<"direction	:"<< _bulletName<<endl<<endl;
+	}
+};
+//Simple Bullet is  concreate prototype
+class simplebullet: public bullet
+{
+public:
+	simplebullet(string bulletName,float speed,float firePower,float damagePower,float  direction):
+		bullet(bulletName,speed,firePower,damagePower,direction){}
+
+	auto_ptr<bullet> clone() override
+	{
+		//return   make_unique<simplebullet>(*this);
+	}
+
+};
+
+enum BULLET_TYPE
+{
+	SIMPLE,
+	GOOD
+};
+//Simple Bullet is  concreate prototype
+class goodbullet: public bullet
+{
+public:
+	goodbullet(string bulletName,float speed,float firePower,float damagePower,float  direction):
+		bullet(bulletName,speed,firePower,damagePower,direction){}
+
+	auto_ptr<bullet> clone() override
+	{
+		//return   make_unique<goodbullet>(*this);
+	}
+};
+
+
+class bulletfactory
+{
+private:
+	//unorder_map<BULLET_TYPE, unique_ptr<bullet>, has<int> > m_bullet;
+public:
+	bulletfactory()
+	{
+		//m_bullet[SIMPLE]= make_unique<simplebullet>("simpleBullet",50,75,75);
+		//m_bullet[GOOD]= make_unique<goodbullet>("Good Bullet",75,100,100);
+	}
+#ifdef 1
+	unique_ptr<bullet> createbullet(BULLET_TYPE bullet_type)
+	{
+		return m_bullet[BULLET_TYPE]->clone();
+	}
+#endif
+};
+
+
+int main()
+{
+	bulletfactory vbulletfactory;
+    //auto bullet = bulletfactory.createbullet(SIMPLE);
+	bullet->fired();
+
+	return 0;
+}
+
+
+
